@@ -1,0 +1,54 @@
+To demonstrate, let's use `module list`. `module list` shows all loaded
+software modules.
+
+```
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modules:
+  1) python/py36-anaconda-5.2.0
+
+```
+{: .output}
+
+```
+{{ site.remote.prompt }} module load beast
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modules:
+  1) python/py36-anaconda-5.2.0   2) java/1.8.0_152   3) beast/1.10.4
+
+```
+{: .output}
+
+So in this case, loading the `beast` module (a bioinformatics software
+package), also loaded `java/1.8.0_152` as well. Let's
+try unloading the `beast` package.
+
+```
+{{ site.remote.prompt }} module unload beast
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modules:
+  1) python/py36-anaconda-5.2.0
+```
+{: .output}
+
+So using `module unload` "un-loads" a module along with its dependencies. If we
+wanted to unload everything at once, we could run `module purge` (unloads
+everything).
+
+{: .language-bash}
+```
+{{ site.remote.prompt }} module purge
+```
+Note that `module purge` is informative. It will let us know if any modules
+were not unloaded and how to actually unload these if we desire.

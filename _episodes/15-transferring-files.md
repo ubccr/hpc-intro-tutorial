@@ -57,14 +57,14 @@ The syntax can be a little complex for new users, but we'll break it down.
 To *upload to* another computer:
 
 ```
-{{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}
+{{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.transfer }}:/path/on/{{ site.remote.name }}
 ```
 {: .language-bash}
 
 To *download from* another computer:
 
 ```
-{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
+{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.transfer }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
 ```
 {: .language-bash}
 
@@ -72,7 +72,7 @@ Note that everything after the `:` is relative to our home directory on the
 remote computer. We can leave it at that if we don't care where the file goes.
 
 ```
-{{ site.local.prompt }} scp local-file.txt {{ site.remote.user }}@{{ site.remote.login }}:
+{{ site.local.prompt }} scp local-file.txt {{ site.remote.user }}@{{ site.remote.transfer }}:
 ```
 {: .language-bash}
 
@@ -84,7 +84,7 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > > ## Solution
 > >
 > > ```
-> > {{ site.local.prompt }} scp hpc-intro-data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
+> > {{ site.local.prompt }} scp hpc-intro-data.tar.gz {{ site.remote.user }}@{{ site.remote.transfer }}:~/
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -99,9 +99,9 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > download the file, then use the `scp` command (just below here) to upload
 > it to the cluster.
 >
-> > ## `curl -O` from {{ site.remote.login }}
+> > ## `curl -O` from {{ site.remote.transfer }}
 > > or
-> > ## `wget` from {{ site.remote.login }}
+> > ## `wget` from {{ site.remote.transfer }}
 > > 
 > > Try downloading the file directly. Note that it may well fail, and that's
 > > OK!
@@ -109,7 +109,7 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > > > ## Commands
 > > >
 > > > ```
-> > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+> > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.transfer }}
 > > > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 > > > or
 > > > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
@@ -128,7 +128,7 @@ reaches the bottom of the directory tree rooted at the folder name you
 provided.
 
 ```
-{{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.login }}:target-directory/
+{{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.transfer }}:target-directory/
 ```
 {: .language-bash}
 
@@ -169,7 +169,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > commonly used options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
+> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.transfer }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .language-bash}
 >
@@ -183,7 +183,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP path/to/local/dir {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
+> {{ site.local.prompt }} rsync -avzP path/to/local/dir {{ site.remote.user }}@{{ site.remote.transfer }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .language-bash}
 >
@@ -198,7 +198,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > To download a file, we simply change the source and destination:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
+> {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.transfer }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 > ```
 > {: .language-bash}
 {: .callout}
@@ -217,7 +217,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > > modify this command?
 > >
 > > ```
-> > {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> > {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.transfer }}:
 > > ```
 > > {: .language-bash}
 > >
@@ -227,7 +227,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > > > {{ site.local.prompt }} rsync --help | grep port
 > > >      --port=PORT             specify double-colon alternate port number
 > > > See http://rsync.samba.org/ for updates, bug reports, and answers
-> > > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> > > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.transfer }}:
 > > > ```
 > > > {: .language-bash}
 > > {: .solution}
@@ -251,7 +251,7 @@ connect to the cluster, your cluster files will appear on the right hand side.
 To connect to the cluster, we'll just need to enter our credentials at the top
 of the screen:
 
-* Host: `sftp://{{ site.remote.login }}`
+* Host: `sftp://{{ site.remote.transfer }}`
 * User: Your cluster username
 * Password: Your cluster password
 * Port: (leave blank to use the default port)
@@ -294,7 +294,7 @@ computer. Note that you can concatenate the two flags, instead of writing
 `-t -f` separately.
 
 ```
-{{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+{{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.transfer }}
 {{ site.remote.prompt }} tar -tf hpc-lesson-data.tar.gz
 hpc-intro-data/
 hpc-intro-data/north-pacific-gyre/
