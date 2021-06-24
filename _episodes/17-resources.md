@@ -61,7 +61,7 @@ This shows all the jobs we ran recently (note that there are multiple entries
 per job). To get info about a specific job, we change command slightly.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 6008388
 ```
 {: .language-bash}
 
@@ -71,7 +71,7 @@ your job by the scheduler. It may be useful to redirect this information to
 through fields).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 6008388 | less
 ```
 {: .language-bash}
 

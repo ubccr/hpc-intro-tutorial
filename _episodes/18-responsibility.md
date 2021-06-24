@@ -237,25 +237,25 @@ talked about data transfer earlier.
 > best way to transfer them to {{ site.remote.name }}?
 >
 > 1. ```
->    {{ site.local.prompt }} scp -r data {{ site.remote.user }}@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} scp -r data {{ site.remote.user }}@{{ site.remote.transfer }}:~/
 >    ```
 >    {: .language-bash}
 > 2. ```
->    {{ site.local.prompt }} rsync -ra data {{ site.remote.user }}@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} rsync -ra data {{ site.remote.user }}@{{ site.remote.transfer }}:~/
 >    ```
 >    {: .language-bash}
 > 3. ```
->    {{ site.local.prompt }} rsync -raz data {{ site.remote.user }}@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} rsync -raz data {{ site.remote.user }}@{{ site.remote.transfer }}:~/
 >    ```
 >    {: .language-bash}
 > 4. ```
 >    {{ site.local.prompt }} tar -cvf data.tar data
->    {{ site.local.prompt }} rsync -raz data.tar {{ site.remote.user }}@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} rsync -raz data.tar {{ site.remote.user }}@{{ site.remote.transfer }}:~/
 >    ```
 >    {: .language-bash}
 > 5. ```
 >    {{ site.local.prompt }} tar -cvzf data.tar.gz data
->    {{ site.local.prompt }} rsync -ra data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} rsync -ra data.tar.gz {{ site.remote.user }}@{{ site.remote.transfer }}:~/
 >    ```
 >    {: .language-bash}
 >

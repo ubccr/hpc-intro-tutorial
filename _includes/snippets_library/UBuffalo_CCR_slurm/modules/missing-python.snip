@@ -1,0 +1,66 @@
+In the case of CCR's systems, there is a version of Python 2 and Python3 on most systems; however, the versions installed on the head nodes may be different than those installed on the compute nodes or may not be the version you need.  We can test this by using the `which` command and the 'version' option of the python command.  `which` looks for programs the same way that Bash does, so we can use it to tell us where a particular piece of software is stored.  Using the '--version' option will tell us what version is the default.
+
+{: .language-bash}
+
+```
+{{ site.remote.prompt }} which python3
+```
+
+{: .output}
+
+```
+/usr/bin/python3
+```
+
+{: .language-bash}
+
+```
+{{ site.remote.prompt }} python3 --version
+```
+
+{: .output}
+
+```
+Python 3.6.8
+```
+
+Let's see what other versions of `python` are available:
+
+{: .language-bash}
+
+```
+{{ site.remote.prompt }} module avail python
+```
+
+{: .output}
+```
+------------------------------------------------- /util/common/modulefiles/Core -------------------------------------------------
+   bioconda/py37-biopython               python/py27-anaconda-5.3.1      python/py37-anaconda-2019.07
+   python/anaconda_no_mkl                python/py27-anaconda-2018.12    python/py37-anaconda-2019.10
+   python/anaconda-common                python/py27-anaconda-2019.03    python/py37-anaconda-2020.02
+   python/anaconda-common-4.3.1          python/py27-anaconda-2019.10    python/py38-anaconda-2020.07
+   python/anaconda              (L,D)    python/py36-anaconda-5.2.0      python/py38-anaconda-2020.11
+   python/anaconda-4.4.0                 python/py36-anaconda-5.3.1      python/py38-anaconda-2021.05
+   python/anaconda-5.0.0                 python/py37-anaconda-5.3.1      vhub/python
+   python/anaconda-5.0.1-common          python/py37-anaconda-2018.12
+   python/anaconda-5.1.0-gpu             python/py37-anaconda-2019.03
+
+------------------------------------------------ /util/academic/modulefiles/Core ------------------------------------------------
+   biopython/1.70          python/anaconda-4.3.1      python/anaconda-5.2.0     python/anaconda2-4.2.0
+   issm/4.15-python        python/anaconda-5.0.0.1    python/anaconda2-2.4.1    python/anaconda2-4.3.0
+   openslide/python-ocv    python/anaconda-5.0.1      python/anaconda2-4.1.1
+
+  Where:
+   L:  Module is loaded
+   D:  Default Module
+
+Use "module spider" to find all possible modules.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+
+```
+{: .output}
+
+If we need a different version of `python` we can load it with `module load`:
+
+{% include {{ site.snippets }}/modules/module-load-python.snip %}
+
