@@ -20,22 +20,22 @@
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
 
-snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+snippets: "/snippets_library/UBuffalo_CCR_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
   bash_shebang: "#!/usr/bin/env bash"
 
 remote:
-  name: "Graham"
-  login: "graham.computecanada.ca"
-  host: "gra-login1"
-  node: "aci-377"
-  location: "University of Waterloo"
-  homedir: "/home"
+  name: "UBHPC"
+  login: "vortex.ccr.buffalo.edu"
+  transfer: "transfer.ccr.buffalo.edu"
+  host: "vortex1[2].ccr.buffalo.edu"
+  node: "cpn-k05-22"
+  location: "University at Buffalo"
+  homedir: "/user"
   user: "yourUsername"
-  prompt: "[yourUsername@gra-login1 ~]$"
-  module_python3: "python3"
+  prompt: "[yourUsername@vortex1[2] ~]$"
   bash_shebang: "#!/usr/bin/env bash"
 
 sched:
@@ -45,7 +45,7 @@ sched:
     options: ""
   queue:
     debug: "debug"
-    testing: "testing"
+    testing: "debug"
   status: "squeue"
   flag:
     user: "-u yourUsername"
@@ -54,8 +54,6 @@ sched:
     name: "-J"
     time: "-t"
     queue: "-p"
-    nodes: "-N"
-    tasks: "-n"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"
