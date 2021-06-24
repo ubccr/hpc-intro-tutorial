@@ -1,0 +1,47 @@
+# UCL, University College London: Myriad + SGE
+snippets: "/snippets_library/UCL_Myriad_sge"
+
+local:
+  prompt: "[user@laptop ~]$"
+
+remote:
+  name: "Myriad"
+  login: "myriad.rc.ucl.ac.uk"
+  node: node-d00a-001
+  location: "University College London"
+  homedir: "/home"
+  user: "yourUsername"
+  prompt: "[yourUsername@login12 ~]$ "
+  bash_shebang: "#!/bin/bash -l"
+
+sched:
+  name: "SGE"
+  submit:
+    name: "qsub"
+    options: ""
+    iopt: ""
+  status: "qstat"
+  flag:
+    user: "-u yourUsername"
+    interactive: "-l mem=512M,h_rt=2:00:00"
+    name: "-N"
+    histdetail: "-j"
+    time: "-l h_rt="
+    queue: "-q"
+  del: "qdel"
+  interactive: "qrsh"
+  info: "qhost"
+  comment: "#$ "
+  hist: "jobhist"
+  bash_shebang: "#!/bin/bash -l"
+
+episode_order:
+  - 11-hpc-intro
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility
+
